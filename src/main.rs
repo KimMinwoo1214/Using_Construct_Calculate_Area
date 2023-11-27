@@ -129,7 +129,7 @@ fn main() {
         println!("{}", o);
     }
 
-    if shape == 2 { //the shape is triangle
+    else if shape == 2 { //the shape is triangle
         println!("Type two numbers.");
         
         let mut w1 = String::new();
@@ -150,7 +150,7 @@ fn main() {
         println!("{}", o);
     }
 
-    if shape ==3 { //the shape is circle
+    else if shape ==3 { //the shape is circle
         println!("Type one number.");
 
         let mut r1 = String::new();
