@@ -1,5 +1,6 @@
 use std::fmt;
 use std::{io};
+use std::f32::consts::PI; //for using PI
 
 #[derive(Debug)]
 struct Rectangle {
@@ -50,7 +51,7 @@ impl Triangle {
 impl Circle {
   fn area(&self) -> f32 {
     let radius = self.radius as f32;
-    radius * radius * 3.14
+    radius * radius * PI
   }
 
   fn new(radius: u32) -> Circle {
