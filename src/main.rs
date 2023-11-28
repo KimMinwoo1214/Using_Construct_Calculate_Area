@@ -1,6 +1,13 @@
 use std::fmt;
 use std::{io};
-use std::f32::consts::PI; //for using PI
+use std::f32::consts::PI;
+
+fn input(prompt: &str) -> f32{
+  println!("{}", prompt);
+  let mut s = String::new();
+  std::io::stdin().read_line(&mut s).expect("Failed to read line");
+  s.trim().parse().expect("Not a Number.")
+}
 
 #[derive(Debug)]
 struct Rectangle {
@@ -70,7 +77,7 @@ impl Rectangle {
 
 impl Triangle {
   fn show(&self) {
-    println!("{} and {} with area: {}", self.width, self.height, self);
+    println!("{} and {} with area: {}", self.width, self.height, self.area());
   }
 }
 
@@ -100,26 +107,12 @@ impl fmt::Display for Circle {
 }
 
 fn main() {
-    println!("Type any number.");
-    println!("1.Rectangle, 2.Triangle, 3.Circle"); //selct shape
-    
-    let mut shape = String::new();
-    io::stdin()
-    .read_line(&mut shape)
-    .expect("Failed to read line");
-    let shape: i32 = shape.trim().parse().expect("Invalid input for the first number");
+    //selct shape
+    let mut shape = input("1.Rectangle, 2.Triangle, 3.Circle")  
 
     if shape == 1 { //the shape is rectangle
-        println!("Type two numbers.");
-        
-        let mut w1 = String::new();
-        io::stdin().read_line(&mut w1).expect("Failed to read line");
-        
-        let mut h1 = String::new();
-        io::stdin().read_line(&mut h1).expect("Failed to read line");
-        
-        let w1: u32 = w1.trim().parse().expect("Invalid input for the first number");
-        let h1: u32 = h1.trim().parse().expect("Invalid input for the first number");
+      let mut w1 = input("Type width");
+      let mut h1 = input("Type height");
         
         let o = Rectangle {
             width: w1,
@@ -130,16 +123,8 @@ fn main() {
     }
 
     else if shape == 2 { //the shape is triangle
-        println!("Type two numbers.");
-        
-        let mut w1 = String::new();
-        io::stdin().read_line(&mut w1).expect("Failed to read line");
-        
-        let mut h1 = String::new();
-        io::stdin().read_line(&mut h1).expect("Failed to read line");
-        
-        let w1: u32 = w1.trim().parse().expect("Invalid input for the first number");
-        let h1: u32 = h1.trim().parse().expect("Invalid input for the first number");
+        let mut w1 = input("Type width");
+        let mut h1 = input("Type height");
         
         let o = Triangle {
             width: w1,
@@ -150,13 +135,8 @@ fn main() {
         println!("{}", o);
     }
 
-    else if shape ==3 { //the shape is circle
-        println!("Type one number.");
-
-        let mut r1 = String::new();
-        io::stdin().read_line(&mut r1).expect("Failed to read line");
-
-        let r1: u32 = r1.trim().parse().expect("Invalid input for the first number");
+    else if shape == 3 { //the shape is circle
+        let mut r1 = input("Type radius");
         
         let o = Circle {
             radius: r1,
@@ -164,5 +144,9 @@ fn main() {
          
         o.show();
         println!("{}", o);
+    }
+
+    else{
+      println!("You type wrong number!!");
     }
 }
